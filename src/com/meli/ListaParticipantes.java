@@ -15,6 +15,11 @@ public class ListaParticipantes {
 
     public void insertParticipante(Participante participante) {
 
+        if (participante.getIdade() < 18 && participante.getCategoria().equals(Categoria.avancado)) {
+            System.out.println("\nParticipant is under 18 and has subscribed for advanced track!");
+            return;
+        }
+
         int lastNumber = getLastParticipanteIndex();
 
         participante.setNumber(++lastNumber);
@@ -46,7 +51,7 @@ public class ListaParticipantes {
         if (participanteIndex != -1)
             participantes.remove(participanteIndex);
         else
-            System.out.println("\nId Not found");
+            System.out.println("\nId Not found!");
     }
 
 }

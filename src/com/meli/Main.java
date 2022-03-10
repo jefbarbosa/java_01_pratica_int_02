@@ -53,9 +53,6 @@ public class Main {
         ListaParticipantes listaParticipantes = new ListaParticipantes();
 
         String repeat;
-        int UserInpVal;
-
-
         Scanner keyboard = new Scanner(System.in);
 
         System.out.println("1-Inscrever\n2-Mostrar todos\n3-Cancelar inscrição");
@@ -68,8 +65,10 @@ public class Main {
                 System.out.println(repeat);
                 insertParticipant(listaParticipantes);
             }
-            if (repeat.equals("2"))
+            if (repeat.equals("2")) {
+                // TODO - Segment the output based on input by category
                 listaParticipantes.printAllParticipants();
+            }
 
             if (repeat.equals("3"))
                 cancela(listaParticipantes);
