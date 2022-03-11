@@ -1,16 +1,23 @@
 package com.meli;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 public class ListaParticipantes {
 
     private LinkedList<Participante> participantes = new LinkedList<>();
+    private Set<String> participantsRgSet = new HashSet<>();
 
     private int getLastParticipanteIndex() {
         if (participantes.size() > 0)
             return participantes.getLast().getNumber();
         else
             return 0;
+    }
+
+    private boolean checkDuplicateParticipant(Participante participante) {
+        return participantsRgSet.contains(participante.getRG());
     }
 
     public void insertParticipante(Participante participante) {
@@ -23,6 +30,11 @@ public class ListaParticipantes {
         int lastNumber = getLastParticipanteIndex();
 
         participante.setNumber(++lastNumber);
+        if(checkDuplicateParticipant(participante)) {
+            System.out.println("\nParticipant already subscribed!!");
+            return;
+        }
+        participantsRgSet.add(participante.getRG());
         participantes.addLast(participante);
     }
 
