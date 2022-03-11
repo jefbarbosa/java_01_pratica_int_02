@@ -26,15 +26,24 @@ public class ListaParticipantes {
         participantes.addLast(participante);
     }
 
-    public void printAllParticipants() {
+    public void printAllParticipants(Categoria categoria) {
         System.out.println("");
+        if (participantes.size() < 1)
+            return;
 
-        if (participantes.size() > 0) {
-            for (Participante participant : participantes) {
-                System.out.println(participant.getNumber() + " " + participant.getNome() + " " + participant.getIdade());
-            }
-            System.out.println("\n");
+        for (Participante participant : participantes) {
+            if (!categoria.equals(participant.getCategoria()))
+                continue;
+
+            System.out.println();
+            System.out.println("Subscription Number: " + participant.getNumber() +
+                    " - Nome: " + participant.getNome() + " - sobrenome: " + participant.getSobrenome() +
+                    " - numero Celular: " + participant.getNumeroCelular() + " - numero Emergencia: " + participant.getNumeroEmergencia()+
+                    " - RG: " + participant.getRG() + " - grupo sanguineo: " + participant.getGrupoSanguineo() +
+                    " - idade: " + participant.getIdade() + " - valor: " + participant.getValue() +
+                    " - categoria: " + participant.getCategoria());
         }
+
     }
 
     private int searchParticipantIndexById(int id) {

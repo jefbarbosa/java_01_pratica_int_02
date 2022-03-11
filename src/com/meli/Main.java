@@ -34,8 +34,28 @@ public class Main {
         participante.setNumeroEmergencia(numeroEmergencia);
         participante.setGrupoSanguineo(grupoSanguineo);
         participante.setCategoria(Categoria.valueOf(categoria));
+        participante.setValue();
 
         listaParticipantes.insertParticipante(participante);
+    }
+
+    public static void printParticipants(ListaParticipantes listaParticipantes) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nSelecione a Categoria: 1-pequeno 2-Medio 3-Avancado:");
+        int categoria = scanner.nextInt();
+
+        switch (categoria) {
+            case 1:
+                listaParticipantes.printAllParticipants(Categoria.pequeno);
+                break;
+            case 2:
+                listaParticipantes.printAllParticipants(Categoria.medio);
+                break;
+            case 3:
+                listaParticipantes.printAllParticipants(Categoria.avancado);
+                break;
+        }
+
     }
 
     public static void cancela(ListaParticipantes listaParticipantes) {
@@ -59,21 +79,18 @@ public class Main {
         repeat = keyboard.nextLine();
 
         while (repeat.equals("1") || repeat.equals("2") || repeat.equals("3")) {
-            //UserInpVal = repeat;
 
             if (repeat.equals("1")) {
-                System.out.println(repeat);
                 insertParticipant(listaParticipantes);
             }
             if (repeat.equals("2")) {
-                // TODO - Segment the output based on input by category
-                listaParticipantes.printAllParticipants();
+                printParticipants(listaParticipantes);
             }
 
             if (repeat.equals("3"))
                 cancela(listaParticipantes);
 
-            System.out.println("1-Inscrever\n2-Mostrar todos\n3-Cancelar inscrição");
+            System.out.println("\n1-Inscrever\n2-Mostrar todos\n3-Cancelar inscrição");
             repeat = keyboard.nextLine();
         }
 
